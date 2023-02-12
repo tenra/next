@@ -1,4 +1,6 @@
 import { GetServerSideProps } from "next";
+import Cookies from "js-cookie";
+import axios from "axios";
 
 export const withAuthServerSideProps = (url: string): GetServerSideProps => {
     return async (context) => {
@@ -25,4 +27,14 @@ export const withAuthServerSideProps = (url: string): GetServerSideProps => {
         console.log(props)
         return { props };
     };
+};
+
+export const signOut = () => {
+    return axios.delete(`${process.env.NEXT_PUBLIC_BACK_URL}/users/sign_out`, {
+        headers: {
+            "access-token": Cookies.get("access-token"),
+            client: Cookies.get("client"),
+            uid: Cookies.get("uid"),
+        },
+    });
 };
