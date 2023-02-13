@@ -38,7 +38,7 @@ export const Header: React.FC = () => {
         <>
             <header>
                 <Link href="/" className="">home</Link>/
-                {isSignedIn ?
+                {isSignedIn && currentUser ?
                     <>
                         <p>My name is {currentUser?.name} 🙋🏻{currentUser?.email}</p>
                         <Link href="/profile" className="">profile</Link>
@@ -46,7 +46,8 @@ export const Header: React.FC = () => {
                     </>
                 :
                     <>
-                        <Link href="/login" className="">login</Link>
+                        <Link href="/login" className="">login</Link>/
+                        <Link href="/signup" className="">signup</Link>/
                     </>
                 }
             </header>
