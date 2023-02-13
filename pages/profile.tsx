@@ -1,7 +1,6 @@
 import * as React from "react";
 import { GetServerSideProps } from "next";
 import { withAuthServerSideProps } from "lib/auth";
-import { useCurrentUserContext } from 'lib/CurrentUserContext';
 
 export const getServerSideProps: GetServerSideProps = withAuthServerSideProps("/users/profile");
 
