@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next";
 import Cookies from "js-cookie";
-import axios from "axios";
+import client from "lib/client";
 
 export const withAuthServerSideProps = (url: string): GetServerSideProps => {
     return async (context) => {
@@ -17,7 +17,7 @@ export const withAuthServerSideProps = (url: string): GetServerSideProps => {
         if (!response.ok && response.status === 401) {
             return {
                 redirect: {
-                    destination: "/login",
+                    destination: "/",
                     permanent: false,
                 },
             };
@@ -29,8 +29,24 @@ export const withAuthServerSideProps = (url: string): GetServerSideProps => {
     };
 };
 
+export const getCurrentUser = () => {
+    if (
+        !Cookies.get("access-token") ||
+        !Cookies.get("client") ||
+        !Cookies.get("uid")
+    )
+    return;
+    return client.get("/users/base", {
+        headers: {
+            "access-token": Cookies.get("access-token") || "",
+            client: Cookies.get("client") || "",
+            uid: Cookies.get("uid") || "",
+        },
+    });
+};
+
 export const signOut = () => {
-    return axios.delete(`${process.env.NEXT_PUBLIC_BACK_URL}/users/sign_out`, {
+    return client.delete("/users/sign_out", {
         headers: {
             "access-token": Cookies.get("access-token"),
             client: Cookies.get("client"),
