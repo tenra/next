@@ -2,11 +2,16 @@ import React, { ReactElement, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { useCurrentUserContext } from 'lib/CurrentUserContext';
 
 const Login = () => {
     const router = useRouter();
     const [isError, setIsError] = useState<boolean>(false);
     const [errorMessage, setErrorMessage] = useState<string>("");
+
+    const currentUserContext = useCurrentUserContext()
+    const {isSignedIn, setIsSignedIn} = currentUserContext;
+    const {currentUser, setCurrentUser} = currentUserContext;
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
@@ -30,7 +35,10 @@ const Login = () => {
                 Cookies.set("uid", response.headers["uid"]);
                 Cookies.set("client", response.headers["client"]);
                 Cookies.set("access-token", response.headers["access-token"]);
-                router.push("/profile");
+                //値を更新
+                setIsSignedIn(true);
+                setCurrentUser(response.data.data);
+                router.replace("/profile");
             })
             .catch(function (error) {
                 // Cookieからトークンを削除しています
