@@ -54,12 +54,14 @@ const Signup = () => {
                             name="name"
                             autoFocus
                             placeholder="name"
+                            className="block my-1 p-1"
                         />
                         <input
                             id="email"
                             name="email"
                             autoComplete="email"
                             placeholder="user@example.com"
+                            className="block my-1 p-1"
                         />
                         <input
                             name="password"
@@ -67,15 +69,17 @@ const Signup = () => {
                             id="password"
                             autoComplete="current-password"
                             placeholder="******"
+                            className="block my-1 p-1"
                         />
                         <input
                             type="password"
                             id="password_confirmation"
                             name="password_confirmation"
                             placeholder="******"
+                            className="block my-1 p-1"
                         />
 
-                        <button type="submit">登録メール送信</button>
+                        <button type="submit" className="bg-slate-500">登録メール送信</button>
                         {isError ? (
                             <p onClick={() => {
                                     setIsError(false);

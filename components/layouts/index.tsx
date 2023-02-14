@@ -8,9 +8,9 @@ const Layouts = (props: any) => {
 
     return (
         <>
-            <div>
+            <div className="flex flex-col h-screen">
                 <Header />
-                <main>
+                <main className="flex-grow">
                     {props.children}
                 </main>
                 <Footer />

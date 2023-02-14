@@ -64,14 +64,18 @@ const Login = () => {
                         name="email"
                         autoComplete="email"
                         autoFocus
+                        className="block my-1 p-1"
+                        placeholder="user@example.com"
                     />
                     <input
                         name="password"
                         type="password"
                         id="password"
                         autoComplete="current-password"
+                        className="block my-1 p-1"
+                        placeholder="******"
                     />
-                    <button type="submit">ログイン</button>
+                    <button type="submit"className="bg-slate-500">ログイン</button>
                     {isError ? (
                         <p onClick={() => {
                                 setIsError(false);
