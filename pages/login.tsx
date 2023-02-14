@@ -13,6 +13,8 @@ const Login = () => {
     const {isSignedIn, setIsSignedIn} = currentUserContext;
     const {currentUser, setCurrentUser} = currentUserContext;
 
+    const account_confirmation_success = router.query.account_confirmation_success;
+
     const handleSubmit = (event: any) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -54,6 +56,7 @@ const Login = () => {
     return (
         <div>
             <div>
+                {account_confirmation_success === 'true' ? <p>ユーザー登録が完了しました。こちらからログインして下さい。</p>:null}
                 <p>ログイン</p>
                 <form onSubmit={handleSubmit}>
                     <input

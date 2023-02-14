@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
+import { useCurrentUserContext } from 'lib/CurrentUserContext';
 
 const Signup = () => {
     const [sendConfirm, setSendConfirm] = useState<boolean>(false);
     const [isError, setIsError] = useState<boolean>(false);
     const [errorMessage, setErrorMessage] = useState<string>("");
+
+    const currentUserContext = useCurrentUserContext()
+    const {isSignedIn, setIsSignedIn} = currentUserContext;
+    const {currentUser, setCurrentUser} = currentUserContext;
 
 
     const handleSubmit = (event: any) => {
@@ -25,7 +31,7 @@ const Signup = () => {
                 email: data.get("email"),
                 password: data.get("password"),
                 password_confirmation: data.get("password_confirmation"),
-                confirm_success_url: process.env.NEXT_PUBLIC_FRONT_URL,
+                confirm_success_url: `${process.env.NEXT_PUBLIC_FRONT_URL}/login`,
             })
             .then(function (response) {
                 setSendConfirm(true);
