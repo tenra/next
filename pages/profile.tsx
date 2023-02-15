@@ -2,7 +2,7 @@ import * as React from "react";
 import { GetServerSideProps } from "next";
 import { withAuthServerSideProps } from "lib/auth";
 
-export const getServerSideProps: GetServerSideProps = withAuthServerSideProps("/users/profile");
+export const getServerSideProps: GetServerSideProps = withAuthServerSideProps("/auth/profile");
 
 const Profile = (props: any) => {
     console.log(props)

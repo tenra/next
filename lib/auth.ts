@@ -36,7 +36,7 @@ export const getCurrentUser = () => {
         !Cookies.get("uid")
     )
     return;
-    return client.get("/users/base", {
+    return client.get("/auth/base", {
         headers: {
             "access-token": Cookies.get("access-token") || "",
             client: Cookies.get("client") || "",
@@ -46,7 +46,7 @@ export const getCurrentUser = () => {
 };
 
 export const signOut = () => {
-    return client.delete("/users/sign_out", {
+    return client.delete("/auth/sign_out", {
         headers: {
             "access-token": Cookies.get("access-token"),
             client: Cookies.get("client"),

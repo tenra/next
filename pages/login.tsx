@@ -28,7 +28,7 @@ const Login = () => {
             setIsError(false);
             setErrorMessage("");
             return await axiosInstance
-            .post("users/sign_in", {
+            .post("auth/sign_in", {
                 email: data.get("email"),
                 password: data.get("password"),
             })
@@ -40,7 +40,7 @@ const Login = () => {
                 //値を更新
                 setIsSignedIn(true);
                 setCurrentUser(response.data.data);
-                router.replace("/profile");
+                router.replace(`/users/${response.data.data.id}`);
             })
             .catch(function (error) {
                 // Cookieからトークンを削除しています
