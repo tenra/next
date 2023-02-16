@@ -40,8 +40,8 @@ export const Header: React.FC = () => {
                 <Link href="/" className="">home</Link>/
                 {isSignedIn && currentUser ?
                     <>
-                        <span>{currentUser?.name} 🙋🏻</span>
-                        <Link href="/profile" className="">profile</Link>
+                        <span><Link href={`/users/${currentUser.id}`} className="">{currentUser?.name} 🙋🏻</Link></span>/
+                        <Link href="/profile" className="">profile</Link>/
                         <button onClick={handleSignOut} className="bg-slate-500">ログアウト</button>
                     </>
                 :

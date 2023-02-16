@@ -9,6 +9,7 @@ type CurrentUserContextType = {
   loading: boolean;
   setLoading: Dispatch <SetStateAction<boolean>>;
   currentUser: {
+    id: number;
     name: string;
     email: string;
   };

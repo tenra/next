@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useQuery } from '@tanstack/react-query';
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -38,9 +39,11 @@ export const PromotionList = () => {
       <div>
         {PromotionList?.map(({ id, title, content }) => (
           <div key={id}>
-            <p>id: {id}</p>
-            <p>title: {title}</p>
-            <p>content: {content}</p>
+            <Link href={`/promotions/${id}`}>
+              <p>id: {id}</p>
+              <p>title: {title}</p>
+              <p>content: {content}</p>
+            </Link>
           </div>
         ))}
       </div>
