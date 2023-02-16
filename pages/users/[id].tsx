@@ -1,4 +1,6 @@
 import { useCurrentUserContext } from 'lib/CurrentUserContext';
+import UserEditModal from 'components/users/UserEditModal';
+import PromotionNewModal from 'components/promotions/PromotionNewModal';
 
 type UserProp = {
     user: any;
@@ -31,11 +33,9 @@ const UserShow = ({ user }: UserProp) => {
 
     return (
         <>
+            {currentUser && currentUser.id === user.id ? <><UserEditModal />/<PromotionNewModal /></> : null}
             <h1 className="text-3xl">{user?.name}</h1>
-
-            {currentUser && currentUser.id === user.id ?
-                (<button className="bg-slate-500">current_user_edit</button>)
-            : null}
+            <p>{user?.sentence}</p>
         </>
     )
 }

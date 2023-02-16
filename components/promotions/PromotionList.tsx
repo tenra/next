@@ -37,6 +37,7 @@ export const PromotionList = () => {
 
     return (
       <div>
+        <h2 className="text-3xl">PromotionList</h2>
         {PromotionList?.map(({ id, title, content }) => (
           <div key={id}>
             <Link href={`/promotions/${id}`}>

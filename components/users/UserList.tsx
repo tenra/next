@@ -35,6 +35,7 @@ export const UserList = () => {
 
     return (
         <div>
+            <h2 className="text-3xl">UserList</h2>
             {UserList?.map(({ id, name }) => (
                 <div key={id}>
                     <Link href={`/users/${id}`}>

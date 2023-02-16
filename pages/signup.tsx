@@ -26,7 +26,7 @@ const Signup = () => {
             setIsError(false);
             setErrorMessage("");
             return await axiosInstance
-            .post("users", {
+            .post("auth", {
                 name: data.get("name"),
                 email: data.get("email"),
                 password: data.get("password"),
