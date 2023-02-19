@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { useCurrentUserContext } from 'lib/CurrentUserContext'
 import { signOut } from "lib/auth";
 import Cookies from "js-cookie";
+import { toast } from 'react-toastify';
 
 export const Header: React.FC = () => {
     const currentUserContext = useCurrentUserContext()
@@ -24,6 +25,7 @@ export const Header: React.FC = () => {
                 //値を更新
                 setIsSignedIn(false);
                 setCurrentUser("");
+                toast.success('Hello. This is test')
                 router.replace("/");
                 console.log("Succeeded in sign out")
             } else {

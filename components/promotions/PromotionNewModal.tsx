@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import Modal from 'react-modal';
 import axios from "axios";
 import Cookies from "js-cookie";
+import { toast } from 'react-toastify';
 
 export default function PromotionNewModal() {
     const [showModal, setShowModal] = useState<boolean>(false);
@@ -35,7 +36,8 @@ export default function PromotionNewModal() {
                 content: data.get("content"),
             })
             .then(function(response) {
-                router.reload()
+                toast.success('Hello. This is test')
+                router.push("/");
                 //setCurrentUser(currentUser);
                 //setShowModal(false);
                 //console.log("success update");

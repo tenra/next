@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import Modal from 'react-modal';
 import axios from "axios";
 import Cookies from "js-cookie";
+import { toast } from 'react-toastify';
 import { useCurrentUserContext } from 'lib/CurrentUserContext';
 
 export default function UserEditModal() {
@@ -35,11 +36,11 @@ export default function UserEditModal() {
                 client: Cookies.get("client") || "",
                 uid: Cookies.get("uid") || "",
             },
-        }).then(() => {
-            router.reload()
-            //setCurrentUser(currentUser);
-            //setShowModal(false);
-            //console.log("success update");
+        }).then(function(response) {
+            setCurrentUser(response.data.data);
+            setShowModal(false);
+            toast.success('Hello. This is test')
+            router.replace(`/users/${currentUser.id}`);
         })
         .catch((error) => {
             setIsError(true);

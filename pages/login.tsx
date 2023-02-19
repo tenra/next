@@ -2,6 +2,7 @@ import React, { ReactElement, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { toast } from 'react-toastify';
 import { useCurrentUserContext } from 'lib/CurrentUserContext';
 
 const Login = () => {
@@ -40,6 +41,7 @@ const Login = () => {
                 //値を更新
                 setIsSignedIn(true);
                 setCurrentUser(response.data.data);
+                toast.success('Hello. This is test')
                 router.replace(`/users/${response.data.data.id}`);
             })
             .catch(function (error) {
