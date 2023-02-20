@@ -37,7 +37,7 @@ export default function PromotionNewModal() {
             })
             .then(function(response) {
                 toast.success('Hello. This is test')
-                router.push("/");
+                router.push("/platform");
                 //setCurrentUser(currentUser);
                 //setShowModal(false);
                 //console.log("success update");

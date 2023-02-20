@@ -42,7 +42,8 @@ const Login = () => {
                 setIsSignedIn(true);
                 setCurrentUser(response.data.data);
                 toast.success('Hello. This is test')
-                router.replace(`/users/${response.data.data.id}`);
+                //router.replace(`/users/${response.data.data.id}`);
+                router.replace("/platform");
             })
             .catch(function (error) {
                 // Cookieからトークンを削除しています

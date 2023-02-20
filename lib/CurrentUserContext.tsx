@@ -33,7 +33,7 @@ export function CurrentUserWrapper({ children } : ChildrenProps ) {
       if (res?.data.isLogin === true) {
         setIsSignedIn(true); 
         setCurrentUser(res?.data.data);
-        console.log(res?.data.data);
+        //console.log(res?.data.data);
       } else {
         console.log("no current_user");
       }

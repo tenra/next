@@ -17,6 +17,14 @@ export async function getServerSideProps(context: any) {
             "access-token": context.req.cookies['access-token']
         }
     });
+    if (!res.ok && res.status === 401) {
+        return {
+            redirect: {
+                destination: "/",
+                permanent: false,
+            },
+        };
+    }
     const user = await res.json();
     console.log(res)
 
