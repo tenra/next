@@ -3,6 +3,9 @@ import { useQuery } from '@tanstack/react-query';
 import axios from "axios";
 import Cookies from "js-cookie";
 
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+
 interface Users {
     id: number;
     name: string;
@@ -30,7 +33,11 @@ export const UserList = () => {
     console.log(UserList);
 
     if (isLoading) {
-        return <div className="loader"></div>;
+        return (
+            <Box sx={{ display: 'flex' }}>
+                <CircularProgress />
+            </Box>
+        )
     }
 
     return (

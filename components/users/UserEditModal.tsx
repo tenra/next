@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
-import Modal from 'react-modal';
 import axios from "axios";
 import Cookies from "js-cookie";
 import { toast } from 'react-toastify';
 import { useCurrentUserContext } from 'lib/CurrentUserContext';
+
+import Dialog from '@mui/material/Dialog';
+import { Button, TextField } from "@mui/material";
 
 export default function UserEditModal() {
     const [showModal, setShowModal] = useState<boolean>(false);
@@ -66,40 +68,34 @@ export default function UserEditModal() {
     };
 
     const editModal = (
-        <Modal
-            style={customStyles}
-            //className="top-[50%] left-[50%] bottom-auto right-auto bg-black"
-            //overlayClassName="overlay"
-            isOpen={showModal}
-            shouldCloseOnOverlayClick={true}
-            onRequestClose={handleCloseModal}
-            ariaHideApp={false}>
+        <Dialog open={showModal} onClose={handleCloseModal}>
             <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                 <p>編集</p>
                 <form onSubmit={handleSubmit}>
-                    <input
-                        id="name"
+                    <TextField
+                        id="outlined-basic" label="Name" variant="outlined"
                         name="name"
                         defaultValue={currentUser.name}
                         onChange={(e) => setName(e.target.value)}
-                        className="block my-1 p-1"
-                        placeholder="name"
+                        placeholder="user_name"
+                        required={true}
+                        fullWidth
+                        size="small"
                     />
-                    <textarea
-                        id="sentence"
+                    <TextField
+                        id="outlined-basic" label="Sentence" variant="outlined"
                         name="sentence"
                         defaultValue={currentUser.sentence}
                         onChange={(e) => setSentence(e.target.value)}
-                        className="block my-1 p-1"
-                        placeholder="sentence"
+                        placeholder="500文字以内"
+                        multiline
+                        rows={4}
+                        fullWidth
+                        size="small"
                     />
-                    <button type="submit"className="bg-slate-500">保存</button>
+                    <Button variant="contained" type="submit">保存</Button>
                     {isError ? (
-                        <p onClick={() => {
-                                setIsError(false);
-                                setErrorMessage("");
-                            }}
-                        >
+                        <p onClick={() => {setIsError(false); setErrorMessage("");}}>
                             {errorMessage}
                         </p>
                     ) : null}
@@ -113,7 +109,7 @@ export default function UserEditModal() {
                     閉じる
                 </button>
             </div>
-        </Modal>
+        </Dialog>
     );
 
     return (

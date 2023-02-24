@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
-import Modal from 'react-modal';
 import axios from "axios";
 import Cookies from "js-cookie";
 import { toast } from 'react-toastify';
+
+import Dialog from '@mui/material/Dialog';
+import { Button, TextField } from "@mui/material";
 
 export default function PromotionNewModal() {
     const [showModal, setShowModal] = useState<boolean>(false);
@@ -67,30 +69,28 @@ export default function PromotionNewModal() {
     };
 
     const newModal = (
-        <Modal
-            style={customStyles}
-            //className="top-[50%] left-[50%] bottom-auto right-auto bg-black"
-            //overlayClassName="overlay"
-            isOpen={showModal}
-            shouldCloseOnOverlayClick={true}
-            onRequestClose={handleCloseModal}
-            ariaHideApp={false}>
+        <Dialog open={showModal} onClose={handleCloseModal}>
             <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                 <p>作成</p>
                 <form onSubmit={handleSubmit}>
-                    <input
-                        id="title"
+                    <TextField
+                        id="outlined-basic" label="title" variant="outlined"
                         name="title"
-                        className="block my-1 p-1"
+                        required={true}
+                        fullWidth
+                        size="small"
                         placeholder="title"
                     />
-                    <textarea
-                        id="content"
+                    <TextField
+                        id="outlined-basic" label="content" variant="outlined"
                         name="content"
-                        className="block my-1 p-1"
-                        placeholder="content"
+                        placeholder="500文字以内"
+                        multiline
+                        rows={4}
+                        fullWidth
+                        size="small"
                     />
-                    <button type="submit"className="bg-slate-500">作成</button>
+                    <Button variant="contained" type="submit">作成</Button>
                     {isError ? (
                         <p onClick={() => {
                                 setIsError(false);
@@ -110,7 +110,7 @@ export default function PromotionNewModal() {
                     閉じる
                 </button>
             </div>
-        </Modal>
+        </Dialog>
     );
 
     return (

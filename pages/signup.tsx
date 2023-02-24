@@ -3,6 +3,8 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useCurrentUserContext } from 'lib/CurrentUserContext';
 
+import { Button, TextField } from "@mui/material";
+
 const Signup = () => {
     const [sendConfirm, setSendConfirm] = useState<boolean>(false);
     const [isError, setIsError] = useState<boolean>(false);
@@ -49,37 +51,45 @@ const Signup = () => {
                 <div>
                     <p>新規ユーザー登録</p>
                     <form onSubmit={handleSubmit}>
-                        <input
-                            id="name"
+                        <TextField
+                            id="outlined-basic" label="name" variant="outlined"
                             name="name"
                             autoFocus
                             placeholder="name"
-                            className="block my-1 p-1"
+                            required={true}
+                            fullWidth
+                            size="small"
                         />
-                        <input
-                            id="email"
+                        <TextField
+                            id="outlined-basic" label="email" variant="outlined"
                             name="email"
                             autoComplete="email"
                             placeholder="user@example.com"
-                            className="block my-1 p-1"
+                            required={true}
+                            fullWidth
+                            size="small"
                         />
-                        <input
+                        <TextField
                             name="password"
                             type="password"
-                            id="password"
+                            id="outlined-basic" label="password" variant="outlined"
                             autoComplete="current-password"
                             placeholder="******"
-                            className="block my-1 p-1"
+                            required={true}
+                            fullWidth
+                            size="small"
                         />
-                        <input
+                        <TextField
                             type="password"
-                            id="password_confirmation"
+                            id="outlined-basic" label="password_confirmation" variant="outlined"
                             name="password_confirmation"
                             placeholder="******"
-                            className="block my-1 p-1"
+                            required={true}
+                            fullWidth
+                            size="small"
                         />
 
-                        <button type="submit" className="bg-slate-500">登録メール送信</button>
+                        <Button variant="contained" type="submit">登録メール送信</Button>
                         {isError ? (
                             <p onClick={() => {
                                     setIsError(false);

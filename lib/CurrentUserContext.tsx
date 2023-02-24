@@ -13,6 +13,7 @@ type CurrentUserContextType = {
     name: string;
     email: string;
     sentence: string;
+    avatar: {url: string};
   };
   setCurrentUser: Dispatch <SetStateAction<string>>;
   isSignedIn: boolean;

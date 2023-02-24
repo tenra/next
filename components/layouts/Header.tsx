@@ -7,10 +7,27 @@ import { signOut } from "lib/auth";
 import Cookies from "js-cookie";
 import { toast } from 'react-toastify';
 
+import Avatar from '@mui/material/Avatar';
+import { Stack, Button } from '@mui/material'
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
 export const Header: React.FC = () => {
     const currentUserContext = useCurrentUserContext()
     const {isSignedIn, setIsSignedIn} = currentUserContext;
     const {currentUser, setCurrentUser} = currentUserContext;
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const router = useRouter();
 
@@ -25,6 +42,7 @@ export const Header: React.FC = () => {
                 //値を更新
                 setIsSignedIn(false);
                 setCurrentUser("");
+                setOpen(false);
                 toast.success('Hello. This is test')
                 router.replace("/");
                 console.log("Succeeded in sign out")
@@ -40,16 +58,38 @@ export const Header: React.FC = () => {
         <>
             <header>
                 {isSignedIn && currentUser ?
-                    <>
-                        <Link href="/platform" className="">logo</Link>/
-                        <span><Link href={`/users/${currentUser.id}`} className="">{currentUser?.name} 🙋🏻</Link></span>/
-                        <button onClick={handleSignOut} className="bg-slate-500">ログアウト</button>
-                    </>
+                    <Stack spacing={2} direction="row" alignItems="center">
+                        <Link href="/platform" className="">logo</Link>
+                        <Link href={`/users/${currentUser.id}`}>
+                            <Stack direction="row" alignItems="center">
+                                {currentUser?.name}
+                                <Avatar src={currentUser?.avatar?.url} alt={currentUser?.name} />
+                            </Stack>
+                        </Link>
+                        <button onClick={handleClickOpen}>ログアウト</button>
+                        <Dialog
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle id="alert-dialog-title">ログアウトの確認</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    本当にログアウトしますか？
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions style={{justifyContent: 'center'}}>
+                                <Button onClick={handleClose}>キャンセル</Button>
+                                <Button onClick={handleSignOut} variant="contained" autoFocus>決定</Button>
+                            </DialogActions>
+                        </Dialog>
+                    </Stack>
                 :
                     <>
                         <Link href="/" className="">logo</Link>/
-                        <Link href="/login" className="">login</Link>/
-                        <Link href="/signup" className="">signup</Link>/
+                        <Link href="/login" className="">ログイン</Link>/
+                        <Button href="/signup" variant="outlined">ユーザー登録</Button>
                     </>
                 }
             </header>

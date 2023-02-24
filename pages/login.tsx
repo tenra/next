@@ -5,6 +5,8 @@ import Cookies from "js-cookie";
 import { toast } from 'react-toastify';
 import { useCurrentUserContext } from 'lib/CurrentUserContext';
 
+import { Button, TextField } from "@mui/material";
+
 const Login = () => {
     const router = useRouter();
     const [isError, setIsError] = useState<boolean>(false);
@@ -62,23 +64,27 @@ const Login = () => {
                 {account_confirmation_success === 'true' ? <p>ユーザー登録が完了しました。こちらからログインして下さい。</p>:null}
                 <p>ログイン</p>
                 <form onSubmit={handleSubmit}>
-                    <input
-                        id="email"
+                    <TextField
+                        id="outlined-basic" label="email" variant="outlined"
                         name="email"
                         autoComplete="email"
                         autoFocus
-                        className="block my-1 p-1"
                         placeholder="user@example.com"
+                        required={true}
+                        fullWidth
+                        size="small"
                     />
-                    <input
+                    <TextField
+                        id="outlined-basic" label="password" variant="outlined"
                         name="password"
                         type="password"
-                        id="password"
                         autoComplete="current-password"
-                        className="block my-1 p-1"
                         placeholder="******"
+                        required={true}
+                        fullWidth
+                        size="small"
                     />
-                    <button type="submit"className="bg-slate-500">ログイン</button>
+                    <Button variant="contained" type="submit">ログイン</Button>
                     {isError ? (
                         <p onClick={() => {
                                 setIsError(false);
