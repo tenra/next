@@ -115,7 +115,7 @@ export default function PromotionNewModal() {
 
     return (
         <>
-            <button onClick={handleOpenModal} className="bg-slate-500">promotion_new</button>
+            <Button variant="text" onClick={handleOpenModal}>プロモ作成</Button>
             {newModal}
         </>
     );
