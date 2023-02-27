@@ -6,7 +6,7 @@ import { useCurrentUserContext } from 'lib/CurrentUserContext'
 import { signOut } from "lib/auth";
 import Cookies from "js-cookie";
 import { toast } from 'react-toastify';
-import { DarkThemeSwitch } from "@/components/layouts/DarkThemeSwitch";
+import { DarkModeSwitch } from "components/layouts/DarkModeSwitch";
 
 import Avatar from '@mui/material/Avatar';
 import { Stack, Button } from '@mui/material'
@@ -90,10 +90,10 @@ export const Header: React.FC = () => {
                     <>
                         <Link href="/" className="">logo</Link>/
                         <Link href="/login" className="">ログイン</Link>/
-                        <Button href="/signup" variant="outlined">ユーザー登録</Button>
+                        <Link href="/signup">ユーザー登録</Link>
                     </>
                 }
-                <DarkThemeSwitch />
+                <DarkModeSwitch />
             </header>
         </>
     )

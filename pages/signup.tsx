@@ -52,7 +52,7 @@ const Signup = () => {
                     <p>新規ユーザー登録</p>
                     <form onSubmit={handleSubmit}>
                         <TextField
-                            id="outlined-basic" label="name" variant="outlined"
+                            id="name" label="name" variant="outlined"
                             name="name"
                             autoFocus
                             placeholder="name"
@@ -61,7 +61,7 @@ const Signup = () => {
                             size="small"
                         />
                         <TextField
-                            id="outlined-basic" label="email" variant="outlined"
+                            id="email" label="email" variant="outlined"
                             name="email"
                             autoComplete="email"
                             placeholder="user@example.com"
@@ -72,8 +72,8 @@ const Signup = () => {
                         <TextField
                             name="password"
                             type="password"
-                            id="outlined-basic" label="password" variant="outlined"
-                            autoComplete="current-password"
+                            id="password" label="password" variant="outlined"
+                            autoComplete="new-password"
                             placeholder="******"
                             required={true}
                             fullWidth
@@ -81,8 +81,9 @@ const Signup = () => {
                         />
                         <TextField
                             type="password"
-                            id="outlined-basic" label="password_confirmation" variant="outlined"
+                            id="password_confirmation" label="password_confirmation" variant="outlined"
                             name="password_confirmation"
+                            autoComplete="new-password"
                             placeholder="******"
                             required={true}
                             fullWidth

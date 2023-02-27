@@ -65,7 +65,7 @@ const Login = () => {
                 <p>ログイン</p>
                 <form onSubmit={handleSubmit}>
                     <TextField
-                        id="outlined-basic" label="email" variant="outlined"
+                        id="email" label="email" variant="outlined"
                         name="email"
                         autoComplete="email"
                         autoFocus
@@ -75,7 +75,7 @@ const Login = () => {
                         size="small"
                     />
                     <TextField
-                        id="outlined-basic" label="password" variant="outlined"
+                        id="password" label="password" variant="outlined"
                         name="password"
                         type="password"
                         autoComplete="current-password"
